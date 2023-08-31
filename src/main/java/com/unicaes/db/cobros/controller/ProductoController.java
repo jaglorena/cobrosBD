@@ -1,7 +1,7 @@
 package com.unicaes.db.cobros.controller;
 
 import com.unicaes.db.cobros.enity.Producto;
-import com.unicaes.db.cobros.repository.ProductRepository;
+import com.unicaes.db.cobros.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/producto")
 public class ProductoController {
     @Autowired
-    ProductRepository repository;
+    ProductoRepository repository;
 
     @GetMapping("")
     public String productos(

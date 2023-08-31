@@ -17,6 +17,6 @@ public class DetallesPromocion {
     private String nombre;
 
     @Column(name = "descuento_aplicado")
-    private Double descuentoAplicacdo;
+    private Double descuentoAplicado;
 
 }

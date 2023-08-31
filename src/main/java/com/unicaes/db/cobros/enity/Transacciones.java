@@ -31,4 +31,8 @@ public class Transacciones {
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
+
+    @OneToOne
+    @JoinColumn(name = "id_detalle", referencedColumnName = "id_detalle")
+    private DetallesPromocion promocion;
 }

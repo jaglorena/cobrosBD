@@ -34,7 +34,7 @@ public class PromocionController {
     ){
         DetallesPromocion promocion = new DetallesPromocion();
         promocion.setNombre(nombre);
-        promocion.setDescuentoAplicacdo(porcentaje);
+        promocion.setDescuentoAplicado(porcentaje);
 
         repository.save(promocion);
 
