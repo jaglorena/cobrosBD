@@ -52,7 +52,7 @@ public class TransaccionController {
             @RequestParam(value = "idProducto") int idProducto,
             @RequestParam(value = "cantidad") int cantidad,
             @RequestParam(value = "idDescuento") int idDescuento,
-            @RequestParam(value = "idCliente") int idCliente
+            @RequestParam(value = "idCliente", defaultValue = "0") int idCliente
     ) {
         Optional<Producto> producto = productoRepository.findById(idProducto);
         Optional<DetallesPromocion> promocion = promocionRepository.findById(idDescuento);
