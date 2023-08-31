@@ -77,6 +77,7 @@
                         <th>ID forma de pago</th>
                         <th>Nombre de forma de pago</th>
                         <th>Descripción</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +85,7 @@
                         <td th:text="${pago.getIdPago()}"></td>
                         <td th:text="${pago.getMetodoDePago()}"></td>
                         <td th:text="${pago.getDetallesEspecificos()}"></td>
+                        <td><a th:href="${'/pago/eliminar/' + pago.getIdPago()}">Eliminar</a> </td>
                     </tr>
                 </tbody>
             </table>

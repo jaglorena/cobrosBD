@@ -5,7 +5,11 @@ import com.unicaes.db.cobros.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -43,7 +47,7 @@ public class ProductoController {
         return "redirect:/producto";
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @RequestMapping("/eliminar/{id}")
     public String eliminarProducto(
             @PathVariable(value = "id") int id
     ){

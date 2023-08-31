@@ -70,6 +70,7 @@
                         <th>Id Promoción</th>
                         <th>Nombre promoción</th>
                         <th>Descuento aplicado</th>
+                        <th>Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,7 @@
                         <td th:text="${promocion.getIdDetalle()}"></td>
                         <td th:text="${promocion.getNombre()}"></td>
                         <td th:text="${promocion.getDescuentoAplicacdo()}"></td>
+                        <td><a th:href="${'/promociones/eliminar/' + promocion.getIdDetalle()}">Eliminar</a> </td>
                     </tr>
                     </tbody>
                 </table>

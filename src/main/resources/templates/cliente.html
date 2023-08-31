@@ -70,6 +70,7 @@
                         <th>ID Cliente</th>
                         <th>Nombre</th>
                         <th>Dirección</th>
+                        <th>Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,6 +78,7 @@
                         <td th:text="${cliente.getIdCliente()}"></td>
                         <td th:text="${cliente.getNombre()}"></td>
                         <td th:text="${cliente.getDireccion()}"></td>
+                        <td><a th:href="${'/clientes/eliminar/' + cliente.getIdCliente()}">Eliminar</a> </td>
                     </tr>
                     </tbody>
                 </table>

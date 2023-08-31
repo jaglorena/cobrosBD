@@ -5,7 +5,11 @@ import com.unicaes.db.cobros.repository.PromocionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.swing.*;
 import java.util.List;
@@ -37,7 +41,7 @@ public class PromocionController {
         return "redirect:/promociones";
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @RequestMapping("/eliminar/{id}")
     public String eliminarPromociones(
             @PathVariable(value = "id") int id
     ){
