@@ -40,10 +40,20 @@ public class TransaccionController {
         List<DetallesPromocion> promociones = (List<DetallesPromocion>) promocionRepository.findAll();
         List<Transacciones> transacciones = (List<Transacciones>) repository.findAll();
         List<Cliente> clientes = (List<Cliente>) clienteRepository.findAll();
+        Double total = 0.0;
         model.addAttribute("productos", productos);
         model.addAttribute("descuentos", promociones);
         model.addAttribute("transacciones", transacciones);
         model.addAttribute("clientes", clientes);
+        for (Transacciones transaccion: transacciones) {
+            total += (transaccion.getPromocion()==null) ? (transaccion.getProducto().getPrecioUnitario() * transaccion.getCantidadVendida()) :
+                    (
+                            (transaccion.getProducto().getPrecioUnitario() * transaccion.getCantidadVendida()) -
+                                    (transaccion.getProducto().getPrecioUnitario() * transaccion.getCantidadVendida() * transaccion.getPromocion().getDescuentoAplicado() / 100)
+                    )
+                ;
+        }
+        model.addAttribute("total", total);
         return "transaccion";
     }
 
@@ -72,7 +82,7 @@ public class TransaccionController {
 
     @PostMapping("/consultarSaldo")
     public RedirectView consultarSaldoCliente(
-            @RequestParam(value = "idCliente") int idCliente,
+            @RequestParam(value = "idCliente", defaultValue = "0") int idCliente,
             RedirectAttributes redirectAttributes
     ){
         Optional<Cliente> cliente = clienteRepository.findById(idCliente);
@@ -87,6 +97,50 @@ public class TransaccionController {
             }
         }
 
+        return redirect;
+    }
+
+    @PostMapping("/pagar")
+    public RedirectView pagarCuenta(
+            @RequestParam(value = "idCliente", defaultValue = "0") int idCliente,
+            @RequestParam(value = "total", defaultValue = "0") Double total,
+            @RequestParam(value = "formaPago") int formaPago,
+            RedirectAttributes redirectAttributes
+    ){
+        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+        RedirectView redirect = new RedirectView();
+        redirect.setContextRelative(true);
+        redirect.setUrl("/transacciones");
+        String formaDePago =" Efectivo ";
+
+        if(cliente.isPresent()){
+
+            switch (formaPago) {
+                case 2:
+                    if(cliente.get().getTarjeta()!=null){
+                        cliente.get().getTarjeta().setSaldoActual(cliente.get().getTarjeta().getSaldoActual() - total);
+                    }
+                    formaDePago = " Tarjeta ";
+                    break;
+                case 3:
+                    if(cliente.get().getTarjeta()!=null){
+                        cliente.get().getTarjeta().setPuntosAcumulados(cliente.get().getTarjeta().getPuntosAcumulados() - total);
+                    }
+                    formaDePago = " Puntos ";
+                    break;
+                default:
+                    break;
+            }
+
+            clienteRepository.save(cliente.get());
+
+            if(cliente.get().getTarjeta()!=null){
+                redirectAttributes.addFlashAttribute("saldoCliente", cliente.get().getTarjeta().getSaldoActual());
+                redirectAttributes.addFlashAttribute("puntosCliente", cliente.get().getTarjeta().getPuntosAcumulados());
+                redirectAttributes.addFlashAttribute("idCliente", cliente.get().getIdCliente());
+            }
+        }
+        redirectAttributes.addFlashAttribute("pagado", "Total pagado: $ " + total + " con " + formaDePago);
         return redirect;
     }
 }
