@@ -95,6 +95,7 @@
                     <th>Codigo</th>
                     <th>Descripcion</th>
                     <th>Precio</th>
+                    <th>Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -104,6 +105,7 @@
                     <td th:text="${producto.getCodigo()}"></td>
                     <td th:text="${producto.getDescripcion()}"></td>
                     <td th:text="${'$ ' + #numbers.formatDecimal(producto.getPrecioUnitario(), 1, 'DEFAULT', 2, 'DEFAULT')}"></td>
+                    <td><a th:href="${'/producto/eliminar/' + producto.getIdProducto()}">Eliminar</a> </td>
                 </tr>
                 </tbody>
             </table>

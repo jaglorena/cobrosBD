@@ -5,7 +5,7 @@
       layout:decorate="master">
 <head>
     <meta charset="UTF-8">
-    <title>tarjeta</title>
+    <title>Tarjeta</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
@@ -82,6 +82,7 @@
                         <th>ID</th>
                         <th>Saldo Actual</th>
                         <th>Saldo de Puntos</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +90,7 @@
                         <td th:text="${tarjeta.getIdTarjeta()}"></td>
                         <td th:text="${tarjeta.getSaldoActual()}"></td>
                         <td th:text="${tarjeta.getPuntosAcumulados()}"></td>
+                        <td><a th:href="${'/tarjeta/eliminar/' + tarjeta.getIdTarjeta()}">Eliminar</a> </td>
                     </tr>
                 </tbody>
             </table>

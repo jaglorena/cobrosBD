@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,14 @@ public class TarjetaController {
             clienteRepository.save(cl);
         }
 
+        return "redirect:/tarjeta";
+    }
+
+    @RequestMapping("/eliminar/{id}")
+    public String eliminarTarjeta(
+            @PathVariable(value = "id") int id
+    ){
+        repository.deleteById(id);
         return "redirect:/tarjeta";
     }
 }
