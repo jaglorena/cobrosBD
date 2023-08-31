@@ -18,7 +18,7 @@ public class PagoController {
     @Autowired
     private PagoRepository repository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String listarPagos(Model model){
         Pago pg = new Pago();
         pg.setMetodoDePago("tarjeta");

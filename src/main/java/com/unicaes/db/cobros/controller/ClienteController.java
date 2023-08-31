@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping ("/clientes")
 public class ClienteController {
-    @GetMapping ("/listar")
+    @GetMapping ("")
     public String listarCliente(){
         return "cliente";
 
