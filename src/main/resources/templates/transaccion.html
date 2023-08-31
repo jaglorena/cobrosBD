@@ -43,25 +43,54 @@
         </div>
     </header>
     <div class="container pt-5">
-        <div class="row">
+        <form th:action="@{/transacciones/agregar}" th:method="post">
+            <div class="row">
+                <div class="col-3">
+                    <label for="productos" class="form-label">Producto</label>
+                    <select class="form-select" aria-label="Lista de productos" id="productos" name="idProducto">
+                        <option selected value="0">Seleccione un producto</option>
+                        <option th:each="producto:${productos}" th:value="${producto.getIdProducto()}"
+                                th:text="${producto.getNombre()}" name="idProducto"></option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="text" class="form-control" id="cantidad" name="cantidad">
+                </div>
+                <div class="col-3">
+                    <label for="descuento" class="form-label">Descuentos</label>
+                    <select class="form-select" aria-label="Lista de productos" id="descuento" name="idDescuento">
+                        <option selected value="0">Seleccione un descuento</option>
+                        <option th:each="descuento:${descuentos}" th:value="${descuento.getIdDetalle()}"
+                                th:text="${descuento.getNombre()}"></option>
+                    </select>
+                </div>
+                <div class="col-3 align-middle">
+                    <button type="submit" class="btn btn-success m-3">Agregar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-3">
             <div class="col-md-10">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">#Código</th>
                         <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
                         <th scope="col">Cantidad</th>
-                        <th scope="col">Descuento</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Descuento (%)</th>
                         <th scope="col">Total</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr th:each="transaccion:${transacciones}">
+                        <td th:text="${transaccion.getIdTransaccion()}"></td>
+                        <td th:text="${transaccion.getProducto().getNombre()}"></td>
+                        <td th:text="${transaccion.getCantidadVendida()}"></td>
+                        <td th:text="${transaccion.getProducto().getPrecioUnitario()}"></td>
+                        <td th:text="${transaccion.getPromocion() != null ? transaccion.getPromocion().getDescuentoAplicado() : 0}"></td>
+                        <td th:text="${(transaccion.getCantidadVendida() * transaccion.getProducto().getPrecioUnitario())	- (transaccion.getCantidadVendida() * transaccion.getProducto().getPrecioUnitario() * (transaccion.getPromocion() != null ? (transaccion.getPromocion().getDescuentoAplicado() / 100) : 0))}"></td>
                     </tr>
                     </tbody>
                 </table>

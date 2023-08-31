@@ -80,7 +80,7 @@
                     <tr th:each="promocion: ${promociones}">
                         <td th:text="${promocion.getIdDetalle()}"></td>
                         <td th:text="${promocion.getNombre()}"></td>
-                        <td th:text="${promocion.getDescuentoAplicacdo()}"></td>
+                        <td th:text="${promocion.getDescuentoAplicado()}"></td>
                         <td><a th:href="${'/promociones/eliminar/' + promocion.getIdDetalle()}">Eliminar</a> </td>
                     </tr>
                     </tbody>
