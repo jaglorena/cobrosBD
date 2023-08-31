@@ -13,10 +13,10 @@ public class DetallesPromocion {
     @Column(name = "id_detalle")
     private Integer idDetalle;
 
+    @Column
+    private String nombre;
+
     @Column(name = "descuento_aplicado")
     private Double descuentoAplicacdo;
 
-    @OneToOne
-    @JoinColumn(name = "id_promocion_descuento", referencedColumnName = "id_promocion_descuento")
-    private PromocionDescuento promocionDescuento;
 }

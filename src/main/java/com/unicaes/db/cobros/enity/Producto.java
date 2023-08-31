@@ -15,6 +15,9 @@ public class Producto {
     @Column(length = 30, nullable = false)
     private String codigo;
 
+    @Column(length = 30)
+    private String nombre;
+
     @Column(length = 50)
     private String descripcion;
 
