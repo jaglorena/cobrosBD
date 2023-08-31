@@ -12,26 +12,35 @@
     <header class="p-4 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap aling-items-center justify-content-center justify-content-lg-start">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <brands>
+                    <img class="rounded mx-auto d-block" th:src="@{/logo-canasta.png}" th:alt="logo" style="width: 150px">
+                </brands>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 pt-4">
                     <li>
-                        <a href="/" class="nav-link px-2 text-white">Inicio</a>
+                        <a href="/" class="nav-link px-2 text-white"><h6>Inicio</h6></a>
                     </li>
                     <li>
-                        <a href="/clientes" class="nav-link px-2 text-white">Cliente</a>
+                        <a href="/clientes" class="nav-link px-3 text-white"><h6>Cliente</h6></a>
                     </li>
                     <li>
-                        <a href="/producto" class="nav-link px-2 text-white">Producto</a>
+                        <a href="/producto" class="nav-link px-3 text-white"><h6>Producto</h6></a>
                     </li>
                     <li>
-                        <a href="/pago" class="nav-link px-2 text-white">Pago</a>
+                        <a href="/pago" class="nav-link px-2 text-white"><h6>Pago</h6></a>
                     </li>
                     <li>
-                        <a href="/tarjeta" class="nav-link px-2 text-white">Tarjeta</a>
+                        <a href="/tarjeta" class="nav-link px-2 text-white"><h6>Tarjeta</h6></a>
                     </li>
                     <li>
-                        <a href="/promociones" class="nav-link px-2 text-white">Promoción</a>
+                        <a href="/promociones" class="nav-link px-2 text-white"><h6>Promoción</h6></a>
+                    </li>
+                    <li>
+                        <a href="/transacciones" class="nav-link px-2 text-white"><h6>Transacciones</h6></a>
                     </li>
                 </ul>
+                <brands>
+                    <img class="rounded mx-auto d-block pt-4" th:src="@{/logo-letra.png}" th:alt="logo" style="width: 200px">
+                </brands>
             </div>
         </div>
     </header>
