@@ -16,6 +16,6 @@ public class Tarjeta {
     private Double saldoActual;
 
     @Column(name = "puntos_acumulados")
-    private Long puntosAcumulados;
+    private Double puntosAcumulados;
 
 }

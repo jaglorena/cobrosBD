@@ -16,24 +16,25 @@ import java.util.List;
 @RequestMapping("/pago")
 public class PagoController {
     @Autowired
-    private PagoRepository repository;
+    PagoRepository repository;
 
     @GetMapping("")
     public String listarPagos(Model model){
-        Pago pg = new Pago();
-        pg.setMetodoDePago("tarjeta");
-        pg.setDetallesEspecificos("Detalles adicionales");
-        repository.save(pg);
         List<Pago> pagos = (List<Pago>) repository.findAll();
         model.addAttribute("pagos", pagos);
         return "pago";
     }
 
     @PostMapping("/crear")
-    public String crearPago(@RequestParam(value = "nombre") String nombre, Model model){
-        System.out.println("nombre: " + nombre);
-        List<Pago> pagos = (List<Pago>) repository.findAll();
-        model.addAttribute("pagos", pagos);
-        return "pago";
+    public String crearPago(
+            @RequestParam(value = "nombre") String nombre,
+            @RequestParam(value = "detalles") String detalles
+    ){
+
+        Pago pago = new Pago();
+        pago.setMetodoDePago(nombre);
+        pago.setDetallesEspecificos(detalles);
+        repository.save(pago);
+        return "redirect:/pago";
     }
 }
